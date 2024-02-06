@@ -14,14 +14,15 @@ const landmarkColors = {
 }
 
 const gestureStrings = {
-  'thumbs_up': '👍',
-  'victory': '✌🏻',
-  'rock': '✊️',
-  'paper': '🖐',
-  'scissors': '✌️',
+  'S': 'S',
+  'V': 'V',
   'dont': '🙅',
-  'W': '3️⃣',
-  'I': 'ℹ️'
+  'W': 'W',
+  'I': 'I',
+  'D': 'D',
+  'E': 'E',
+  'B': 'B',
+  'A': 'A'
 }
 
 const base = ['Horizontal ', 'Diagonal Up ']
@@ -55,8 +56,8 @@ async function main() {
   // configure gesture estimator
   // add "✌🏻" and "👍" as sample gestures
   const knownGestures = [
-    fp.Gestures.VictoryGesture,
-    fp.Gestures.ThumbsUpGesture,
+    //fp.Gestures.VictoryGesture,
+    //fp.Gestures.ThumbsUpGesture,
     ...gestures
   ]
   const GE = new fp.GestureEstimator(knownGestures)

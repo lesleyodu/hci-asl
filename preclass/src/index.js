@@ -1,5 +1,4 @@
 import { gestures } from "./gestures.js"
-
 const config = {
   video: { width: 640, height: 480, fps: 30 }
 }
@@ -14,15 +13,17 @@ const landmarkColors = {
 }
 
 const gestureStrings = {
-  'thumbs_up': '👍',
-  'victory': '✌🏻',
-  'rock': '👊🏻',
-  'paper': '🖐',
-  'scissors': '✌🏻',
+  'S': 'S',
+  'V': 'V',
   'dont': '🙅',
-  'W': '3️⃣',
-  'I': 'ℹ️'
+  'W': 'W',
+  'I': 'I',
+  'D': 'D',
+  'E': 'E',
+  'B': 'B',
+  'A': 'A'
 }
+
 const base = ['Horizontal ', 'Diagonal Up ']
 const dont = {
   left: [...base].map(i => i.concat(`Right`)),
@@ -54,27 +55,25 @@ async function main() {
   // configure gesture estimator
   // add "✌🏻" and "👍" as sample gestures
   const knownGestures = [
-    fp.Gestures.VictoryGesture,
-    fp.Gestures.ThumbsUpGesture,
+    //fp.Gestures.VictoryGesture,
+    //fp.Gestures.ThumbsUpGesture,
     ...gestures
   ]
   const GE = new fp.GestureEstimator(knownGestures)
   // load handpose model
   const detector = await createDetector()
   console.log("mediaPose model loaded")
-
   const pair = new Set()
+
   function checkGestureCombination(chosenHand, poseData) {
     const addToPairIfCorrect = (chosenHand) => {
       const containsHand = poseData.some(finger => dont[chosenHand].includes(finger[2]))
-      if (!containsHand) return
+      if(!containsHand) return;
       pair.add(chosenHand)
     }
 
-    
     addToPairIfCorrect(chosenHand)
-
-    if (pair.size !== 2) return
+    if(pair.size !== 2) return;
     resultLayer.left.innerText = resultLayer.right.innerText = gestureStrings.dont
     pair.clear()
   }
@@ -98,34 +97,31 @@ async function main() {
         drawPoint(ctx, keypoint.x, keypoint.y, 3, color)
       }
 
-
       const keypoints3D = hand.keypoints3D.map(keypoint => [keypoint.x, keypoint.y, keypoint.z])
-      const prediction = GE.estimate(keypoints3D, 8.5)
-      if (prediction.gestures.length === 0) {
-        updateDebugInfo(prediction.poseData, 'left')
+      const predictions = GE.estimate(keypoints3D, 9)
+      if(!predictions.gestures.length) {
+        updateDebugInfo(predictions.poseData, 'left')
       }
 
-      if (!prediction.gestures.length) continue
+      if (predictions.gestures.length > 0) {
 
+        const result = predictions.gestures.reduce((p, c) => (p.score > c.score) ? p : c)
+        const found = gestureStrings[result.name]
+        // find gesture with highest match score
+        const chosenHand = hand.handedness.toLowerCase()
+        updateDebugInfo(predictions.poseData, chosenHand)
 
-      // find gesture with highest match score
-      const result = prediction.gestures.reduce((p, c) => (p.score > c.score) ? p : c)
-      const found = gestureStrings[result.name]
-      const chosenHand = hand.handedness.toLowerCase()
-      updateDebugInfo(prediction.poseData, chosenHand)
-
-      if (found !== gestureStrings.dont) {
-        resultLayer[chosenHand].innerText = found
-        continue
+        if(found !== gestureStrings.dont) {
+          resultLayer[chosenHand].innerText = found
+          continue
+        }
+        checkGestureCombination(chosenHand, predictions.poseData)
       }
-
-      checkGestureCombination(chosenHand, prediction.poseData)
 
     }
     // ...and so on
     setTimeout(() => { estimateHands() }, 1000 / config.video.fps)
   }
-
 
   estimateHands()
   console.log("Starting predictions")
