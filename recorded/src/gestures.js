@@ -4,6 +4,8 @@ const rockGesture = new GestureDescription('rock'); // ✊️
 const paperGesture = new GestureDescription('paper'); // 🖐
 const scissorsGesture = new GestureDescription('scissors'); // ✌️
 const dontGesture = new GestureDescription('dont'); // 🙅
+const aslWGesture = new GestureDescription('W'); // 3️⃣
+const aslIGesture = new GestureDescription('I'); // ℹ️
 
 
 // Rock
@@ -59,9 +61,32 @@ for(const finger of Finger.all) {
   dontGesture.addDirection(finger, FingerDirection.HorizontalLeft, 1.0)
 }
 
+// ASL W gesture 
+//------------------------------------------------------------------------------
+
+// index, middle, and ring finger: stretched out
+aslWGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
+aslWGesture.addCurl(Finger.Middle, FingerCurl.NoCurl, 1.0);
+aslWGesture.addCurl(Finger.Ring, FingerCurl.NoCurl, 1.0);
+
+// pinky: curled
+aslWGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
+aslWGesture.addCurl(Finger.Pinky, FingerCurl.HalfCurl, 0.9);
+
+// ASL I gesture 
+//------------------------------------------------------------------------------
+
+// pinky: stretched out 
+aslIGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 1.0);
+
+// index, middle, ring: curled
+aslIGesture.addCurl(Finger.Index, FingerCurl.FullCurl, 1.0);
+aslIGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 1.0);
+aslIGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
+
 
 const gestures = [
-  rockGesture, paperGesture, scissorsGesture, dontGesture
+  rockGesture, paperGesture, scissorsGesture, dontGesture, aslWGesture, aslIGesture
 ]
 
 export {
