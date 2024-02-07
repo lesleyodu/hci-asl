@@ -13,15 +13,20 @@ const landmarkColors = {
 }
 
 const gestureStrings = {
-  'S': 'S',
-  'V': 'V',
-  'dont': '🙅',
-  'W': 'W',
-  'I': 'I',
+  'A': 'A',
+  'B': 'B',
+  //'dont': '🙅',
   'D': 'D',
   'E': 'E',
-  'B': 'B',
-  'A': 'A'
+  'F': 'F',
+  'I': 'I',
+  'L': 'L', 
+  'S': 'S',
+  'U': 'U',
+  'V': 'V',
+  'W': 'W',
+  'X': 'X',
+  'Y': 'Y'
 }
 
 const base = ['Horizontal ', 'Diagonal Up ']
