@@ -2,6 +2,7 @@ const { GestureDescription, Finger, FingerCurl, FingerDirection } = window.fp;
 
 const aslAGesture = new GestureDescription('A'); // A
 const aslBGesture = new GestureDescription('B'); // B
+const aslCGesture = new GestureDescription('C'); // C
 const aslDGesture = new GestureDescription('D'); // D
 const aslEGesture = new GestureDescription('E'); // E
 const aslFGesture = new GestureDescription('F'); // F
@@ -44,6 +45,16 @@ for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
   
 }
 
+// ASL C Gesture
+//------------------------------------------------------------------------------
+
+for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
+ aslCGesture.addCurl(finger, FingerCurl.HalfCurl, 1.0);
+ aslCGesture.addDirection(finger, FingerDirection.DiagonalUpRight, 1.0);
+}
+
+ aslCGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+ aslCGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
 
 // ASL D gesture 
 //------------------------------------------------------------------------------
@@ -220,7 +231,7 @@ aslYGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 1.0);
 
 
 const gestures = [
-  aslAGesture, aslBGesture, aslDGesture, aslEGesture,  aslFGesture, aslIGesture, aslLGesture, 
+  aslAGesture, aslBGesture, aslCGesture, aslDGesture, aslEGesture,  aslFGesture, aslIGesture, aslLGesture, 
   aslSGesture, aslUGesture, aslVGesture, aslWGesture, aslXGesture, aslYGesture
   //dontGesture
 ]

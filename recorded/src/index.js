@@ -17,6 +17,7 @@ const gestureStrings = {
   'A': 'A',
   'B': 'B',
   //'dont': '🙅',
+  'C': 'C',
   'D': 'D',
   'E': 'E',
   'F': 'F',
