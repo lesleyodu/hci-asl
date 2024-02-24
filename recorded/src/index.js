@@ -22,6 +22,7 @@ const gestureStrings = {
   'E': 'E',
   'F': 'F',
   'I': 'I',
+  'J': 'J',
   'L': 'L', 
   'S': 'S',
   'U': 'U',

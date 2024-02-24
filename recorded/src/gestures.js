@@ -7,6 +7,7 @@ const aslDGesture = new GestureDescription('D'); // D
 const aslEGesture = new GestureDescription('E'); // E
 const aslFGesture = new GestureDescription('F'); // F
 const aslIGesture = new GestureDescription('I'); // I
+const aslJGesture = new GestureDescription('J'); // J
 const aslLGesture = new GestureDescription('L'); // L
 const aslSGesture = new GestureDescription('S'); // S
 const aslUGesture = new GestureDescription('U'); // U
@@ -55,6 +56,9 @@ for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
 
  aslCGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
  aslCGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
+
+aslCGesture.addDirection(Finger.Pinky, FingerDirection.HorizontalRight, 0.9);
+aslCGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 0.9);
 
 // ASL D gesture 
 //------------------------------------------------------------------------------
@@ -111,6 +115,22 @@ aslIGesture.addCurl(Finger.Index, FingerCurl.FullCurl, 1.0);
 aslIGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 1.0);
 aslIGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
 
+
+// ASL J gesture - ending pose
+//------------------------------------------------------------------------------
+
+for(let finger of [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
+  aslJGesture.addDirection(finger, FingerDirection.DiagonalUpRight, 1.0);
+}
+
+aslJGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+for(let finger2 of [Finger.Index, Finger.Middle, Finger.Ring]) {
+ aslJGesture.addCurl(finger2, FingerCurl.FullCurl, 1.0);
+}
+aslJGesture.addCurl(Finger.Pinky, FingerCurl.HalfCurl, 1.0);
+
+aslJGesture.addCurl(Finger.Index, FingerCurl.HalfCurl, 0.9);
+aslJGesture.addDirection(Finger.Index, FingerDirection.VerticalUp, 0.9);
 
 // ASL L gesture 
 //------------------------------------------------------------------------------
@@ -205,13 +225,18 @@ aslXGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 0.9);
 //------------------------------------------------------------------------------
 //index, middle, ring, pinky: Full curl
 for(let finger of [Finger.Index, Finger.Middle, Finger.Ring]) {
-  aslYGesture.addCurl(finger, FingerCurl.FullCurl, 1.0)
-  aslYGesture.addCurl(finger, FingerCurl.HalfCurl, 0.9) // accept half curl
+  aslYGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
+  aslYGesture.addCurl(finger, FingerCurl.HalfCurl, 0.9); // accept half curl
+  aslYGesture.addDirection(finger, FingerDirection.VerticalUp, 1.0);
+  aslYGesture.addDirection(finger, FingerDirection.DiagonalUpRight, 0.9);
 }
 
 // thumb, pinky: stretched out
 aslYGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+aslYGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
 aslYGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 1.0);
+aslYGesture.addDirection(Finger.Pinky, FingerDirection.DiagonalUpLeft, 1.0);
+
 
 
 // Don't 🙅
@@ -231,7 +256,7 @@ aslYGesture.addCurl(Finger.Pinky, FingerCurl.NoCurl, 1.0);
 
 
 const gestures = [
-  aslAGesture, aslBGesture, aslCGesture, aslDGesture, aslEGesture,  aslFGesture, aslIGesture, aslLGesture, 
+  aslAGesture, aslBGesture, aslCGesture, aslDGesture, aslEGesture,  aslFGesture, aslIGesture, aslJGesture, aslLGesture, 
   aslSGesture, aslUGesture, aslVGesture, aslWGesture, aslXGesture, aslYGesture
   //dontGesture
 ]
