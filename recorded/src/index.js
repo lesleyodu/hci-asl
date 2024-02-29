@@ -16,7 +16,6 @@ const landmarkColors = {
 const gestureStrings = {
   'A': 'A',
   'B': 'B',
-  //'dont': '🙅',
   'C': 'C',
   'D': 'D',
   'E': 'E',
@@ -27,6 +26,8 @@ const gestureStrings = {
   'J': 'J',
   'K': 'K',
   'L': 'L',
+  'M': 'M',
+  'N': 'N',
   'O': 'O',
   'R': 'R', 
   'S': 'S',
