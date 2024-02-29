@@ -16,8 +16,11 @@ const aslLGesture = new GestureDescription('L'); // L
 const aslMGesture = new GestureDescription('M'); // M
 const aslNGesture = new GestureDescription('N'); // N
 const aslOGesture = new GestureDescription('O'); // O
+const aslPGesture = new GestureDescription('P'); // P
+const aslQGesture = new GestureDescription('Q'); // Q
 const aslRGesture = new GestureDescription('R'); // R
 const aslSGesture = new GestureDescription('S'); // S
+const aslTGesture = new GestureDescription('T'); // T
 const aslUGesture = new GestureDescription('U'); // U
 const aslVGesture = new GestureDescription('V'); // V
 const aslWGesture = new GestureDescription('W'); // W
@@ -36,12 +39,18 @@ for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
 }
 
 // thumb: stretched out
-for(let finger of [Finger.Thumb]) {
-  aslAGesture.addCurl(finger, FingerCurl.NoCurl, 1.0);
-  aslAGesture.addDirection(finger, FingerDirection.VerticalUp, 1.0)
-}
+
+aslAGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+
+aslAGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
+aslAGesture.addDirection(Finger.Index, FingerDirection.DiagonalUpRight, 1.0);
+aslAGesture.addDirection(Finger.Middle, FingerDirection.DiagonalUpRight, 1.0);
+aslAGesture.addDirection(Finger.Ring, FingerDirection.DiagonalUpRight, 1.0);
+aslAGesture.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 1.0);
+  aslAGesture.addDirection(Finger.Thumb, FingerDirection.VerticalUp, 0.9)
 
 aslAGesture.addDirection(Finger.Index, FingerDirection.VerticalUp, 0.9)
+
 
 // ASL B Gesture
 //------------------------------------------------------------------------------
@@ -238,6 +247,13 @@ aslLGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
 aslLGesture.addCurl(Finger.Middle, FingerCurl.HalfCurl, 0.9);
 aslLGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 0.9);
 
+aslLGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
+aslLGesture.addDirection(Finger.Middle, FingerDirection.VerticalUp, 1.0);
+aslLGesture.addDirection(Finger.Index, FingerDirection.VerticalUp, 1.0);
+aslLGesture.addDirection(Finger.Ring, FingerDirection.DiagonalUpRight, 1.0);
+aslLGesture.addDirection(Finger.Pinky, FingerDirection.DiagonalUpRight, 1.0);
+
+
 
 // ASL M Gesture (right)
 // -----------------------------------------------------------------------------
@@ -281,6 +297,43 @@ for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
  aslOGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
  aslOGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0);
 
+// ASL P Gesture
+//------------------------------------------------------------------------------
+aslPGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+ aslPGesture.addDirection(Finger.Thumb, FingerDirection.HorizontalRight, 1.0);
+
+aslPGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
+ aslPGesture.addDirection(Finger.Index, FingerDirection.HorizontalRight, 1.0);
+
+aslPGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 1.0);
+ aslPGesture.addDirection(Finger.Middle, FingerDirection.DiagonalDownRight, 1.0);
+aslPGesture.addDirection(Finger.Middle, FingerDirection.HorizontalRight, 0.9);
+aslPGesture.addCurl(Finger.Middle, FingerCurl.HalfCurl, 0.9);
+
+aslPGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
+ aslPGesture.addDirection(Finger.Ring, FingerDirection.VerticalUp, 1.0);
+ aslPGesture.addDirection(Finger.Ring, FingerDirection.HorizontalRight, 0.9);
+
+aslPGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
+ aslPGesture.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 1.0);
+ aslPGesture.addDirection(Finger.Pinky, FingerDirection.HorizontalRight, 0.9);
+
+
+// ASL Q Gesture
+//------------------------------------------------------------------------------
+for(let finger of [Finger.Middle, Finger.Ring, Finger.Pinky]) {
+ aslQGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
+ aslQGesture.addDirection(finger, FingerDirection.DiagonalDownRight, 1.0);
+}
+
+
+ aslQGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+ aslQGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalDownRight, 1.0);
+
+
+ aslQGesture.addCurl(Finger.Index, FingerCurl.HalfCurl, 1.0);
+ aslQGesture.addDirection(Finger.Index, FingerDirection.DiagonalDownRight, 1.0);
+
 
  // ASL R Gesture
 //------------------------------------------------------------------------------
@@ -308,6 +361,23 @@ for(let finger of [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finge
 }
 
 aslSGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0)
+
+// ASL T Gesture
+//------------------------------------------------------------------------------
+//index, middle, ring, pinky: Full curl
+for(let finger of [Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky]) {
+  aslTGesture.addCurl(finger, FingerCurl.FullCurl, 1.0)
+}
+
+// thumb: stretched out
+aslTGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
+
+aslTGesture.addDirection(Finger.Thumb, FingerDirection.VerticalUp, 1.0);
+aslTGesture.addDirection(Finger.Index, FingerDirection.DiagonalUpRight, 1.0);
+aslTGesture.addDirection(Finger.Middle, FingerDirection.VerticalUp, 1.0);
+aslTGesture.addDirection(Finger.Ring, FingerDirection.DiagonalUpRight, 1.0);
+aslTGesture.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 1.0);
+
 
 // ASL U Gesture
 //------------------------------------------------------------------------------
@@ -391,8 +461,10 @@ aslYGesture.addDirection(Finger.Pinky, FingerDirection.DiagonalUpLeft, 1.0);
 
 
 const gestures = [
-  aslAGesture, aslBGesture, aslCGesture, aslDGesture, aslEGesture,  aslFGesture, aslGGesture, aslHGesture, aslIGesture, aslJGesture, aslKGesture,
-  aslLGesture, aslMGesture, aslNGesture, aslOGesture, aslRGesture, aslSGesture, aslUGesture, aslVGesture, aslWGesture, aslXGesture, aslYGesture,
+  aslAGesture, aslBGesture, aslCGesture, aslDGesture, aslEGesture,  aslFGesture, aslGGesture, 
+  aslHGesture, aslIGesture, aslJGesture, aslKGesture, aslLGesture, aslMGesture, aslNGesture, 
+  aslOGesture, aslPGesture, aslQGesture, aslRGesture, aslSGesture, aslTGesture, aslUGesture, 
+  aslVGesture, aslWGesture, aslXGesture, aslYGesture,
   aslCRGesture
 ]
 
