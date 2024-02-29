@@ -219,7 +219,7 @@ for (let finger of [Finger.Ring, Finger.Pinky]) {
 
 aslKGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
 aslKGesture.addCurl(Finger.Pinky, FingerCurl.HalfCurl, 0.9);
-
+}
 
 // ASL L gesture (right hand)
 //------------------------------------------------------------------------------
