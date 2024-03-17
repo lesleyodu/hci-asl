@@ -41,10 +41,36 @@ const gestureStrings = {
   'Y': 'Y'
 }
 
+let wordSpelledCounts = {
+   'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0, 'H': 0,
+   'I': 0, 'J': 0, 'K': 0, 'L': 0, 'M': 0, 'N': 0, 'O': 0, 'P': 0,
+   'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'U': 0, 'V': 0, 'W': 0, 'X': 0,
+   'Y': 0, 'Z': 0
+}
+
 const base = ['Horizontal ', 'Diagonal Up ']
 const dont = {
   left: [...base].map(i => i.concat(`Right`)),
   right: [...base].map(i => i.concat(`Left`))
+}
+
+function getLetter() {
+    const wordSpelledLayer = document.getElementById("wordspelled")
+
+    let max = 0
+    let maxL = ''
+    for (var key in wordSpelledCounts) {
+        if (wordSpelledCounts[key] > max) {
+            max = wordSpelledCounts[key]
+            maxL = key
+        }
+        wordSpelledCounts[key] = 0
+    }
+    //to do: double letters
+    if (wordSpelledLayer.innerText.endsWith(maxL) === false) {
+       wordSpelledLayer.innerText = wordSpelledLayer.innerText.concat(maxL)
+    }
+
 }
 
 async function createDetector() {
@@ -71,6 +97,8 @@ async function main() {
   }
 
   const wordSpelledLayer = document.getElementById("wordspelled")
+
+
 
   // configure gesture estimator
   // add "✌🏻" and "👍" as sample gestures
@@ -133,11 +161,12 @@ async function main() {
 
         if(found !== gestureStrings.dont) {
           resultLayer[chosenHand].innerText = found
+          wordSpelledCounts[found] = wordSpelledCounts[found] + 1
           // to do: double letters
-          if (wordSpelledLayer.innerText.endsWith(found) === false) {
-              wordSpelledLayer.innerText = wordSpelledLayer.innerText.concat(found)
-              await new Promise(r => setTimeout(r, 1000));
-          }
+          //if (wordSpelledLayer.innerText.endsWith(found) === false) {
+              //wordSpelledLayer.innerText = wordSpelledLayer.innerText.concat(found)
+              //await new Promise(r => setTimeout(r, 1000));
+          //}
           continue
         }
         checkGestureCombination(chosenHand, predictions.poseData)
@@ -209,3 +238,5 @@ window.addEventListener("DOMContentLoaded", () => {
   canvas.height = config.video.height
   console.log("Canvas initialized")
 })
+
+window.setInterval(getLetter, 1000);
