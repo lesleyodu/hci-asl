@@ -69,6 +69,9 @@ async function main() {
     right: document.querySelector("#pose-result-right"),
     left: document.querySelector("#pose-result-left")
   }
+
+  const wordSpelledLayer = document.getElementById("wordspelled")
+
   // configure gesture estimator
   // add "✌🏻" and "👍" as sample gestures
   const knownGestures = [
@@ -130,6 +133,11 @@ async function main() {
 
         if(found !== gestureStrings.dont) {
           resultLayer[chosenHand].innerText = found
+          // to do: double letters
+          if (wordSpelledLayer.innerText.endsWith(found) === false) {
+              wordSpelledLayer.innerText = wordSpelledLayer.innerText.concat(found)
+              await new Promise(r => setTimeout(r, 1000));
+          }
           continue
         }
         checkGestureCombination(chosenHand, predictions.poseData)
