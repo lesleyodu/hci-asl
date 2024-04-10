@@ -323,12 +323,16 @@ aslLGesture.addCurl(Finger.Ring, FingerCurl.HalfCurl, 0.9);
 aslLLGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0);
 aslLLGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0);
 aslLLGesture.addDirection(Finger.Index, FingerDirection.VerticalUp, 1.0)
-aslLLGesture.addDirection(Finger.Thumb, FingerDirection.HorizontalRight, 1.0)
+aslLLGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1.0)
 
 //middle, ring, pinky: curled
 aslLLGesture.addCurl(Finger.Middle, FingerCurl.FullCurl, 1.0);
 aslLLGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
 aslLLGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
+aslLLGesture.addDirection(Finger.Middle, FingerDirection.VerticalUp, 1.0);
+aslLLGesture.addDirection(Finger.Middle, FingerDirection.DiagonalUpRight, 0.9);
+aslLLGesture.addDirection(Finger.Ring, FingerDirection.VerticalUp, 1.0);
+aslLLGesture.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 1.0);
 
 // accept a half curl
 aslLLGesture.addCurl(Finger.Middle, FingerCurl.HalfCurl, 0.9);
@@ -385,15 +389,19 @@ aslNGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
 // all fingers: curled
 for(let finger of [Finger.Index, Finger.Middle]) {
   aslNLGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
-  aslNLGesture.addDirection(finger, FingerDirection.VerticalUp, 1.0)
+  //aslNLGesture.addDirection(finger, FingerDirection.VerticalUp, 1.0);
 }
 
-aslNLGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 0.9)
+//aslNLGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
+aslNLGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 0.9);
 
 aslNLGesture.addCurl(Finger.Ring, FingerCurl.FullCurl, 1.0);
-aslNLGesture.addDirection(Finger.Ring, FingerDirection.DiagonalUpLeft, 0.9)
+aslNLGesture.addDirection(Finger.Ring, FingerDirection.DiagonalUpRight, 1.0);
+aslNLGesture.addDirection(Finger.Index, FingerDirection.DiagonalUpRight, 1.0);
+aslNLGesture.addDirection(Finger.Middle, FingerDirection.DiagonalUpRight, 1.0);
 
 aslNLGesture.addCurl(Finger.Pinky, FingerCurl.FullCurl, 1.0);
+aslNLGesture.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 1.0);
 
 
 
@@ -596,10 +604,12 @@ for(let finger of [Finger.Index, Finger.Middle]) {
   }
 
 // ring, pinky, thumb: curl
-for(let finger of [Finger.Ring, Finger.Pinky, Finger.Thumb]) {
+for(let finger of [Finger.Ring, Finger.Pinky]) {
 aslUGesture.addCurl(finger, FingerCurl.FullCurl, 1.0);
 aslUGesture.addCurl(finger, FingerCurl.HalfCurl, 0.9);
 }
+
+aslUGesture.addCurl(Finger.Thumb, FingerCurl.HalfCurl, 1.0);
 
 aslUGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 0.9)
 
