@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-  <title>ASL</title>
+  <title>FingerPose Example</title>
 
   <!-- Require the peer dependencies of handpose. -->
   <script src="https://unpkg.com/@tensorflow/tfjs-core@3.7.0/dist/tf-core.js"></script>
@@ -21,23 +21,6 @@
   function changeLabel() {
     var lab = document.getElementById("wordspelled");
     lab.innerText = "-";
-  }
-
-  function toggleCamera() {
-    var vid = document.getElementById("pose-video");
-    var canv = document.getElementById("pose-canvas");
-    var persp = document.getElementById("perspective");
-    var tcurr = vid.style.transform;
-    if (tcurr.indexOf('-') == -1) {
-        vid.style = "transform: scaleX(-1)";
-        canv.style = "transform: scaleX(1)";
-        persp.innerText = "Signer's Perspective";
-    }
-    else {
-        vid.style = "transform: scaleX(1)";
-        canv.style = "transform: scaleX(-1)";
-        persp.innerText = "Observer's Perspective";
-    }
   }
   </script>
 
@@ -98,16 +81,13 @@
     }
 
     #pose-video {
-      //transform: scaleX(1);
+      transform: scaleX(-1);
     }
 
     .pose-result {
       font-size: 100px;
       text-align: right;
       padding: 20px 30px 0 0;
-    }
-    #pose-canvas {
-      //transform: scaleX(-1);
     }
 
     #pose-result-left {
@@ -122,7 +102,7 @@
 
     <div class="video">
       <div id="video-container">
-        <video id="pose-video" class="layer" playsinline style="transform: scaleX(-1);"></video>
+        <video id="pose-video" class="layer" playsinline></video>
         <canvas id="pose-canvas" class="layer"></canvas>
         <div id="pose-result-left" class="layer pose-result"></div>
         <br>
@@ -132,17 +112,14 @@
 
     <div class="debug">
 
-      <h2>Word Spelled</h2>
-      <p id="wordspelled" style="font-size: 36px;">-</p>
+      <h2>Letters</h2>
+      <p id="wordspelled">-</p>
       <button type="button" id="wordreset" onclick="changeLabel();">reset</button>
-      <br>
 
-      <h2 id="perspective">Signer's Perspective</h2>
-      <button type="button" id="cameratoggle" onclick="toggleCamera();">mirror camera</button>
-      <br>
 
-     <h2 style="visibility: hidden;">Left Hand</h2>
-      <table id="summary-left" class="summary" style="visibility: hidden;">
+
+      <h2>Left Hand</h2>
+      <table id="summary-left" class="summary">
         <thead>
           <tr>
             <th>Idx</th>
@@ -185,8 +162,8 @@
         </tbody>
       </table>
       <br>
-      <h2 style="visibility: hidden;">Right Hand</h2>
-      <table id="summary-right" class="summary" style="visibility: hidden;">
+      <h2>Right Hand</h2>
+      <table id="summary-right" class="summary">
         <thead>
           <tr>
             <th>Idx</th>
@@ -228,10 +205,9 @@
           </tr>
         </tbody>
       </table>
+    </div>
 
-     </div> <!-- end debug -->
-
-  </div> <!-- end container -->
+  </div>
 
   <script src="./src/index.js" type="module"> </script>
 
