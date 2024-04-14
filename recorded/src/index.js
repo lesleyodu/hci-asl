@@ -69,6 +69,9 @@ function getLetter() {
     //to do: double letters
     if (wordSpelledLayer.innerText.endsWith(maxL) === false) {
        wordSpelledLayer.innerText = wordSpelledLayer.innerText.concat(maxL)
+       if (maxL == "J" && wordSpelledLayer.innerText.endsWith("IJ")) {
+           wordSpelledLayer.innerText = wordSpelledLayer.innerText.substring(0, wordSpelledLayer.innerText.length - 2).concat(maxL);
+       }
     }
 
 }
